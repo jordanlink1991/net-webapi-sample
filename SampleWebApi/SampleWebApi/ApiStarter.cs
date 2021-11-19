@@ -9,9 +9,15 @@ using SampleWebApi.DAL;
 
 namespace SampleWebApi
 {
+	/// <summary>
+	/// Class that handles the initialization of the Web API
+	/// </summary>
 	public class ApiStarter
 	{
 		#region Attributes
+		/// <summary>
+		/// Api Configuration
+		/// </summary>
 		public IConfiguration Configuration { get; }
 		#endregion Attributes
 

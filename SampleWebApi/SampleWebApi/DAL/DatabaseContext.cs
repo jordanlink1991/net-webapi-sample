@@ -8,6 +8,9 @@ using SampleWebApi.Models;
 
 namespace SampleWebApi.DAL
 {
+	/// <summary>
+	/// Interface for database contexts used by the API
+	/// </summary>
 	public interface IDatabaseContext
 	{
 		#region Attributes
@@ -18,6 +21,9 @@ namespace SampleWebApi.DAL
 		#endregion Attributes
 	}
 
+	/// <summary>
+	/// Represents the database context within the API
+	/// </summary>
 	public class DatabaseContext : DbContext, IDatabaseContext
 	{
 		#region Attributes

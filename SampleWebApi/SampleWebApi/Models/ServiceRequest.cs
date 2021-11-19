@@ -4,9 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SampleWebApi.Models
 {
+	/// <summary>
+	/// Simple enum used for flagging the status of a service request
+	/// </summary>
 	public enum ServiceRequestStatus
 	{
 		/// <summary>
@@ -31,12 +35,53 @@ namespace SampleWebApi.Models
 		Canceled
 	}
 
+	/// <summary>
+	/// Interface for service requests
+	/// </summary>
 	public interface IServiceRequest
 	{
+		#region Attributes
+		/// <summary>
+		/// Unique ID of the service request
+		/// </summary>
+		Guid ID { get; set; }
+		/// <summary>
+		/// Code of the building for the request
+		/// </summary>
+		string BuildingCode { get; set; }
+		/// <summary>
+		/// Description of the requested service
+		/// </summary>
+		string Description { get; set; }
+		/// <summary>
+		/// Current status of the requested service
+		/// </summary>
+		ServiceRequestStatus CurrentStatus { get; set; }
+		/// <summary>
+		/// Name of the user who created the service
+		/// </summary>
+		string CreatedBy { get; set; }
+		/// <summary>
+		/// Date the service was created
+		/// </summary>
+		DateTime CreatedDate { get; set; }
+		/// <summary>
+		/// Name of the user who last updated the service
+		/// </summary>
+		string LastModifiedBy { get; set; }
+		/// <summary>
+		/// Date the service was last updated
+		/// </summary>
+		DateTime LastModifiedDate { get; set; }
+		#endregion Attributes
 
 	}
 
+	/// <summary>
+	/// Class that represents a request for a service
+	/// </summary>
 	[Table("ServiceRequest")]
+	[DebuggerDisplay("{CurrentStatus} - {Description}")]
 	public class ServiceRequest : IServiceRequest
 	{
 		#region Attributes

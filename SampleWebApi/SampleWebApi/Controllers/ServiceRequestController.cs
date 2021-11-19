@@ -9,6 +9,9 @@ using SampleWebApi.Models;
 
 namespace SampleWebApi.Controllers
 {
+	/// <summary>
+	/// Controller for the api/servicerequest uri. Accepts GET, POST, PUT, and DELETE
+	/// </summary>
 	[Route("api/servicerequest")]
 	[ApiController]
 	public class ServiceRequestController : ControllerBase
