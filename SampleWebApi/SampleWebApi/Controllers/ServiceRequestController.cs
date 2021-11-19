@@ -125,7 +125,7 @@ namespace SampleWebApi.Controllers
 			if (updRequest.CurrentStatus == ServiceRequestStatus.Complete)
 				EmailUtility.SendEmailForClosedRequest(updRequest);
 
-			return NoContent();
+			return Ok(updRequest);
 		}
 
 		/// <summary>
