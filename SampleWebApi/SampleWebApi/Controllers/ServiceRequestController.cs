@@ -77,10 +77,9 @@ namespace SampleWebApi.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Add(ServiceRequest request)
 		{
-			Context.ServiceRequests.Add(request);
-
 			try
 			{
+				Context.ServiceRequests.Add(request);
 				await Context.SaveChangesAsync();
 			}
 			catch (Exception e)
@@ -122,6 +121,10 @@ namespace SampleWebApi.Controllers
 				return BadRequest(e.Message);
 			}
 
+			// Send email on completed request
+			if (updRequest.CurrentStatus == ServiceRequestStatus.Complete)
+				EmailUtility.SendEmailForClosedRequest(updRequest);
+
 			return NoContent();
 		}
 
@@ -148,7 +151,7 @@ namespace SampleWebApi.Controllers
 				return BadRequest(e.Message);
 			}
 
-			return NoContent();
+			return Created($"/api/servicerequest/{id}", req);
 		}
 		#endregion Public Methods
 	}
